@@ -1,0 +1,31 @@
+{
+    "author": {
+        "name": "Adam Sage"
+    },
+    "bugs": {
+        "url": ""
+    },
+    "name"         : "node-red-contrib-mssql-ps",
+    "version"      : "0.0.1",
+    "description"  : "Execute MSSQL Stored Procedures from Node-RED",
+    "dependencies": {
+		"mssql": "4.*"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+		"node-red",
+		"MSSQL",
+		"Prepared Statement"
+	],
+    "node-red"     : {
+        "nodes": {
+            "node-red-contrib-mssql-ps": "mssql-ps/mssql-ps.js",
+            "mssql-ps-serverconf": "mssql-ps/mssql-ps-serverconf.js",
+            "mssql-ps-psconf": "mssql-ps/mssql-ps-psconf.js"
+        }
+    }
+}
