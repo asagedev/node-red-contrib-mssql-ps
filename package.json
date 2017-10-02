@@ -3,7 +3,7 @@
         "name": "Adam Sage"
     },
     "bugs": {
-        "url": ""
+        "url": "https://github.com/atsage/node-red-contrib-mssql-ps/issues"
     },
     "name"         : "node-red-contrib-mssql-ps",
     "version"      : "0.0.4",
@@ -14,7 +14,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/atsage/node-red-contrib-mssql-ps"
     },
     "keywords": [
 		"node-red",
