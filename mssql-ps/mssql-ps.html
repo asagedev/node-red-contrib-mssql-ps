@@ -27,20 +27,17 @@
 </script>
 
 <script type="text/x-red" data-help-name="node-red-contrib-mssql-ps">
-    <p>This node was created to execute prepared statements from
-	Node-RED using the node.js node mssql.  Complete the config nodes 
-	for Server and Prepared Statement then pass in the parameters 
-	as an object in <code>msg.params</code> Ex:<br />
+    <p>This node was created to execute prepared statements from Node-RED 
+	using the node.js node mssql. Pass in the parameters for the prepared 
+	statement as an object in <code>msg.params</code> Ex:<br />
 	<code>msg.params = {<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;id:1,<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;name:"John Doe"<br />
 	}</code><br />
-	Parameter object names must match parameters set up in 
-	the Prepared Statement.</p>
-    <p>Define parameters and the SQL statement to be executed here.
-	Parameter names can be any string.  Depending on the type selected
-	there may be options required.  In the SQL Statement reference
-	parameters by using @(parameter name) Ex: <br />
+    <p>Parameter object names must match parameters set up in the 
+	Prepared Statement and can be any string. Depending on the 
+	parameter type selected there may be options required. In the 
+	SQL Statement reference parameters by using @(parameter name) Ex:<br />
 	<code>SELECT *<br />
 	FROM users<br />
 	WHERE userid = @id OR name = @name;</code></p>
