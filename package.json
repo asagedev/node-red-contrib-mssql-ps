@@ -6,7 +6,7 @@
         "url": ""
     },
     "name"         : "node-red-contrib-mssql-ps",
-    "version"      : "0.0.3",
+    "version"      : "0.0.4",
     "description"  : "Execute MSSQL Prepared Statements from Node-RED",
     "dependencies": {
 		"mssql": "4.*"
