@@ -6,7 +6,7 @@
         "url": "https://github.com/atsage/node-red-contrib-mssql-ps/issues"
     },
     "name"         : "node-red-contrib-mssql-ps",
-    "version"      : "0.0.4",
+    "version"      : "0.0.5",
     "description"  : "Execute MSSQL Prepared Statements from Node-RED",
     "dependencies": {
 		"mssql": "4.*"

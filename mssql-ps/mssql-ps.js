@@ -12,7 +12,7 @@ module.exports = function(RED) {
         this.sql = n.sql;
         console.log(this.sql);
 		var node = this;
-		node.debug = true; //leave this off for production - will log username/password for some errors
+		node.debug = false; //leave this off for production - will log username/password for some errors
 
 		if (this.server != null) {
 			const sqlconfig = {
