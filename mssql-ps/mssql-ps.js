@@ -7,9 +7,7 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, n);
 		this.server = RED.nodes.getNode(n.server);
         this.params = n.params;
-        console.log(this.params);
         this.sql = n.sql;
-        console.log(this.sql);
 		var node = this;
 		node.debug = false; //leave this off for production - will log username/password for some errors
 		node.status({});//this.on('close' causes timeouts when re-deploying so clear the status at the beginning of the node instead of on close
