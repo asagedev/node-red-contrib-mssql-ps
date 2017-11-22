@@ -34,7 +34,7 @@
     <p>Hostname can be entered as FQDN or IP but must be FQDN if using 
 	encrpytion.  If the server is hosted on Azure encryption must be
 	used.</p>
-	<p>Timeout defaults to 15000ms but should be raised if using more than 5 mssql-ps nodes.  
+	<p>Timeout defaults to 15000ms but should be raised if using more than 10 mssql-ps nodes.  
 	Leaving the default value in this case can cause connection timeouts on Node-RED 
 	deploys and service restarts.  Valid timeout range is 10000-60000ms</p>
 </script>
@@ -47,7 +47,7 @@
             host: {value:"", required: true},
             encryption:{value:true},
             database: {value:"", required: true},
-			timeout: {value:15000}
+			timeout: {value:15000, required: true}
         },
         inputs:0,
         outputs:0,
