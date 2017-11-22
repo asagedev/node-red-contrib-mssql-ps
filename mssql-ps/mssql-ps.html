@@ -31,8 +31,13 @@
 </script>
 
 <script type="text/x-red" data-help-name="node-red-contrib-mssql-ps">
-    <p>This node was created to execute prepared statements from Node-RED 
-	using the node.js node mssql. Pass in the parameters for the prepared 
+    <p>This node was created to execute MSSQL prepared statements from Node-RED 
+	using the node.js node mssql. Fully configure the <code>Server</code> and 
+	<code>Parameters</code> to use this node.  Leave <code>Debug</code> disabled 
+	for production environments as <b>Server username</b> and <b>password</b> 
+	are logged during some errors.  Debug logs to the Node-RED logs, view by using 
+	the command <code>node-red-log</code> or running Node-RED in a terminal window.</p>	
+	<p>Pass in the parameters for the prepared 
 	statement as an object in <code>msg.params</code> Ex:<br />
 	<code>msg.params = {<br />
 	&nbsp;&nbsp;&nbsp;&nbsp;id:1,<br />

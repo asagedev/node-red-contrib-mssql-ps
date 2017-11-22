@@ -4,7 +4,7 @@
         <input type="text" id="node-config-input-name" placeholder="Connection Name">
     </div>
     <div class="form-row">
-        <label for="node-config-input-host"><i class="fa fa-server"></i> Host</label>
+        <label for="node-config-input-host"><i class="fa fa-server"></i> Hostname</label>
         <input type="text" id="node-config-input-host" placeholder="Hostname or IP">
     </div>
     <div class="form-row">
@@ -34,6 +34,9 @@
     <p>Hostname can be entered as FQDN or IP but must be FQDN if using 
 	encrpytion.  If the server is hosted on Azure encryption must be
 	used.</p>
+	<p>Timeout defaults to 15000ms but should be raised if using more than 5 mssql-ps nodes.  
+	Leaving the default value in this case can cause connection timeouts on Node-RED 
+	deploys and service restarts.  Valid timeout range is 10000-60000ms</p>
 </script>
 
 <script type="text/javascript">
