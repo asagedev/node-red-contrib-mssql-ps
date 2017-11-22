@@ -9,7 +9,7 @@ module.exports = function(RED) {
         this.params = n.params;
         this.sql = n.sql;
 		var node = this;
-		node.debug = RED.nodes.getNode(n.debug); //leave this off for production - will log username/password for some errors
+		node.debug = n.debug; //leave this off for production - will log username/password for some errors
 		node.status({});//this.on('close' causes timeouts when re-deploying so clear the status at the beginning of the node instead of on close
 
 		if (this.server != null) {
