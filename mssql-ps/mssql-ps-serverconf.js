@@ -4,6 +4,7 @@ module.exports = function(RED) {
         this.host = n.host;
 		this.encryption = n.encryption;
 		this.database = n.database;
+		this.timeout = n.timeout;
 		this.username = n.username;
 		this.password = n.password;
     }

@@ -7,6 +7,10 @@
         <label for="node-input-server"><i class="fa fa-server"></i> Server</label>
         <input type="text" id="node-input-server" placeholder="Add New Server">
     </div>
+    <div class="form-row">
+        <label for="node-input-debug"><i class="fa fa-wrench"></i> Debug Mode</label>
+        <input type="checkbox" id="node-input-debug">
+    </div>
     <div class="form-row" style="margin-bottom:0;">
         <label><i class="fa fa-cogs"></i> Parameters</label>
     </div>
@@ -49,6 +53,7 @@
         color:"#C0DEED",
         defaults: {
             server: {type:"mssql-ps-serverconf", required: true},
+			debug: {value:false},
 			params: {value:[{paramname:"",paramtype:"",paramoptsone:"",paramoptstwo:""}]},
 			sql: {value:"", required: true},
             name: {value:""}

@@ -19,6 +19,10 @@
         <label for="node-config-input-database"><i class="fa fa-database"></i> Database</label>
         <input type="text" id="node-config-input-database" placeholder="Database">
     </div>
+	<div class="form-row">
+        <label for="node-config-input-timeout"><i class="fa fa-database"></i> Timeout (ms)</label>
+        <input type="number" id="node-config-input-timeout" placeholder="Timeout" min="10000" max="60000">
+    </div>
     <div class="form-row">
         <label for="node-config-input-encryption"><i class="fa fa-shield"></i> Encryption</label>
         <input type="checkbox" id="node-config-input-encryption" style="width: unset;">
@@ -39,7 +43,8 @@
             name: {value:""},
             host: {value:"", required: true},
             encryption:{value:true},
-            database: {value:"", required: true}
+            database: {value:"", required: true},
+			timeout: {value:15000}
         },
         inputs:0,
         outputs:0,

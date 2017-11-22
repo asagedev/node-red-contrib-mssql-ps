@@ -9,7 +9,7 @@ module.exports = function(RED) {
         this.params = n.params;
         this.sql = n.sql;
 		var node = this;
-		node.debug = false; //leave this off for production - will log username/password for some errors
+		node.debug = RED.nodes.getNode(n.debug); //leave this off for production - will log username/password for some errors
 		node.status({});//this.on('close' causes timeouts when re-deploying so clear the status at the beginning of the node instead of on close
 
 		if (this.server != null) {
@@ -18,6 +18,7 @@ module.exports = function(RED) {
 				password: this.server.credentials.password,
 				server: this.server.host, // You can use 'localhost\\instance' to connect to named instance 
 				database: this.server.database,
+				connectionTimeout: this.server.timeout,
 				options: {
 					encrypt: this.server.encryption // Use this if you're on Windows Azure 
 				},
