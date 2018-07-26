@@ -5,7 +5,7 @@ module.exports = function(RED) {
         this.encryption = n.encryption;
         this.database = n.database;
         this.timeout = n.timeout;
-		this.querytimeout = n.querytimeout;
+        this.querytimeout = n.querytimeout;
         this.username = n.username;
         this.password = n.password;
     }

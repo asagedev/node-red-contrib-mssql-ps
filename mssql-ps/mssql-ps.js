@@ -21,7 +21,7 @@ module.exports = function(RED) {
                 server: this.server.host, // You can use 'localhost\\instance' to connect to named instance 
                 database: this.server.database,
                 connectionTimeout: parseInt(this.server.timeout),
-				requestTimeout: parseInt(this.server.querytimeout)||15000,
+                requestTimeout: parseInt(this.server.querytimeout)||15000,
                 options: {
                     encrypt: this.server.encryption // Use this if you're on Windows Azure 
                 },
