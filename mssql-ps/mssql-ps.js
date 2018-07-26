@@ -9,8 +9,8 @@ module.exports = function(RED) {
         this.params = n.params;
         this.sql = n.sql;
         var node = this;
-		node.sqlerror = false;
-		node.sqlerrormsg = "";
+        node.sqlerror = false;
+        node.sqlerrormsg = "";
         node.debug = n.debug; //leave this off for production - will log username/password for some errors
         node.status({});//this.on('close' causes timeouts when re-deploying so clear the status at the beginning of the node instead of on close
 
@@ -27,7 +27,8 @@ module.exports = function(RED) {
                 pool: {
                     max: 10,
                     min: 0,
-                    idleTimeoutMillis: 30000
+                    idleTimeoutMillis: 30000,
+                    acquireTimeoutMillis: 0
                 }
             };
             node.pool = new sql.ConnectionPool(sqlconfig);
@@ -41,6 +42,9 @@ module.exports = function(RED) {
                             console.log(err);
                         }
                     node.status({fill:"red",shape:"dot",text:"Error connecting to server"});
+                }
+                else{
+                    node.status({fill:"green",shape:"dot",text:"Connected"});
                 }
             });
             node.pool.on('error',function(err){
@@ -144,24 +148,24 @@ module.exports = function(RED) {
                             node.log("Error:");
                             console.log(err);
                         }
-						msg = {
-							payload:{
-								error:true,
-								errmsg:err
-							}
-						};
-						node.send(msg);
+                        msg = {
+                            payload:{
+                                error:true,
+                                errmsg:err
+                            }
+                        };
+                        node.send(msg);
                         node.status({fill:"red",shape:"dot",text:"Error preparing statement"});
-						node.sqlerror = false;
-						node.sqlerrormsg = "";
+                        node.sqlerror = false;
+                        node.sqlerrormsg = "";
                     }
                     else{
                         var rows = [];
                         ps.stream = true;
                         
                         const request = ps.execute(msg.params, (err, result) => {
-							console.log("~~~ERROR~~~")
-							console.log(node.sqlerror);
+                            console.log("~~~ERROR~~~")
+                            console.log(node.sqlerror);
                             if (!node.sqlerror){
                                 if (node.debug){
                                     node.log("Recordset");
@@ -169,19 +173,19 @@ module.exports = function(RED) {
                                 }
                                 msg.payload = rows;
                                 node.send(msg);
-                                node.status({});
+                                node.status({fill:"green",shape:"dot",text:"Connected"});
                             }
                             else{
-								msg = {
-									payload:{
-										error:true,
-										errmsg:node.sqlerrormsg
-									}
-								};
+                                msg = {
+                                    payload:{
+                                        error:true,
+                                        errmsg:node.sqlerrormsg
+                                    }
+                                };
                                 node.send(msg);
                                 node.status({fill:"red",shape:"dot",text:"Error executing statement"});
-								node.sqlerror = false;
-								node.sqlerrormsg = "";
+                                node.sqlerror = false;
+                                node.sqlerrormsg = "";
                             }
                             ps.unprepare(err => {
                                 if(err){
@@ -206,8 +210,8 @@ module.exports = function(RED) {
                         });
 
                         request.on('error', err => {
-							node.sqlerror = true;
-							node.sqlerrormsg = err;
+                            node.sqlerror = true;
+                            node.sqlerrormsg = err;
                             node.error("Request error listener " + err, msg);
                             if (node.debug){
                                 node.log("Error:");
