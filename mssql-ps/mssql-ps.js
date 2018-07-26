@@ -27,7 +27,8 @@ module.exports = function(RED) {
                 pool: {
                     max: 10,
                     min: 0,
-                    idleTimeoutMillis: 30000
+                    idleTimeoutMillis: 30000,
+					acquireTimeoutMillis: 0
                 }
             };
             node.pool = new sql.ConnectionPool(sqlconfig);
@@ -41,7 +42,9 @@ module.exports = function(RED) {
                             console.log(err);
                         }
                     node.status({fill:"red",shape:"dot",text:"Error connecting to server"});
-                }
+                } else {
+					node.status({fill:"green",shape:"dot",text:"Connected"});
+				}
             });
             node.pool.on('error',function(err){
                 node.error("Connection pool error" + err);
@@ -72,6 +75,9 @@ module.exports = function(RED) {
         });
 
         this.on('input',function(msg){
+			if(typeof msg.sql !== "undefined" && typeof msg.sql === "string"){
+				this.sql = msg.sql;
+			}
             if (node.debug){
                 node.log("-------------------------Begin SQL-------------------------");
                 node.log("Prepared Statement:");
@@ -169,7 +175,7 @@ module.exports = function(RED) {
                                 }
                                 msg.payload = rows;
                                 node.send(msg);
-                                node.status({});
+                                node.status({fill:"green",shape:"dot",text:"Connected"});
                             }
                             else{
 								msg = {
