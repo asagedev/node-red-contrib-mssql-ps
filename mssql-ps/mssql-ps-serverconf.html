@@ -20,8 +20,12 @@
         <input type="text" id="node-config-input-database" placeholder="Database">
     </div>
     <div class="form-row">
-        <label for="node-config-input-timeout"><i class="fa fa-database"></i> Timeout (ms)</label>
+        <label for="node-config-input-timeout"><i class="fa fa-database"></i> Connection Timeout (ms)</label>
         <input type="number" id="node-config-input-timeout" placeholder="Timeout" min="10000" max="60000">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-querytimeout"><i class="fa fa-database"></i> Query Timeout (ms)</label>
+        <input type="number" id="node-config-input-querytimeout" value=15000 min="0" max="120000">
     </div>
     <div class="form-row">
         <label for="node-config-input-encryption"><i class="fa fa-shield"></i> Encryption</label>
@@ -47,7 +51,8 @@
             host: {value:"", required: true},
             encryption:{value:true},
             database: {value:"", required: true},
-            timeout: {value:15000, required: true}
+            timeout: {value:15000, required: true},
+			querytimeout: {value:15000, required: true}
         },
         inputs:0,
         outputs:0,
