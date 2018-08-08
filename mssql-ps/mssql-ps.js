@@ -165,8 +165,6 @@ module.exports = function(RED) {
                         ps.stream = true;
                         
                         const request = ps.execute(msg.params, (err, result) => {
-                            console.log("~~~ERROR~~~")
-                            console.log(node.sqlerror);
                             if (!node.sqlerror){
                                 if (node.debug){
                                     node.log("Recordset");
@@ -177,6 +175,8 @@ module.exports = function(RED) {
                                 node.status({fill:"green",shape:"dot",text:"Connected"});
                             }
                             else{
+                                console.log("~~~ERROR~~~")
+                                console.log(node.sqlerror);
                                 msg = {
                                     payload:{
                                         error:true,
