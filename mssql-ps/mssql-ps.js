@@ -10,7 +10,6 @@ module.exports = function(RED) {
         this.sql = n.sql;
         var node = this;
         node.sqlerror = false;
-        node.sqlerrormsg = "";
         node.debug = n.debug; //leave this off for production - will log username/password for some errors
         node.status({});//this.on('close' causes timeouts when re-deploying so clear the status at the beginning of the node instead of on close
 
@@ -149,23 +148,14 @@ module.exports = function(RED) {
                             node.log("Error:");
                             console.log(err);
                         }
-                        msg = {
-                            payload:{
-                                error:true,
-                                errmsg:err
-                            }
-                        };
-                        node.send(msg);
                         node.status({fill:"red",shape:"dot",text:"Error preparing statement"});
-                        node.sqlerror = false;
-                        node.sqlerrormsg = "";
                     }
                     else{
                         var rows = [];
                         ps.stream = true;
                         
                         const request = ps.execute(msg.params, (err, result) => {
-                            if (!node.sqlerror){
+                            if (!err && !node.sqlerror ){
                                 if (node.debug){
                                     node.log("Recordset");
                                     console.log(rows);
@@ -175,18 +165,7 @@ module.exports = function(RED) {
                                 node.status({fill:"green",shape:"dot",text:"Connected"});
                             }
                             else{
-                                console.log("~~~ERROR~~~")
-                                console.log(node.sqlerror);
-                                msg = {
-                                    payload:{
-                                        error:true,
-                                        errmsg:node.sqlerrormsg
-                                    }
-                                };
-                                node.send(msg);
-                                node.status({fill:"red",shape:"dot",text:"Error executing statement"});
                                 node.sqlerror = false;
-                                node.sqlerrormsg = "";
                             }
                             ps.unprepare(err => {
                                 if(err){
@@ -211,9 +190,8 @@ module.exports = function(RED) {
                         });
 
                         request.on('error', err => {
-                            node.sqlerror = true;
-                            node.sqlerrormsg = err;
                             node.error("Request error listener " + err, msg);
+                            node.sqlerror = true;
                             if (node.debug){
                                 node.log("Error:");
                                 console.log(err);
